@@ -11,10 +11,10 @@ function CustomerList() {
     { field: "firstname", headerName: "First name", width: 150 },
     { field: "lastname", headerName: "Last name", width: 150 },
     { field: "streetaddress", headerName: "Street address", width: 200 },
-    { field: "postcode", headerName: "Postcode", width: 120 },
+    { field: "postcode", headerName: "Postcode", width: 150 },
     { field: "city", headerName: "City", width: 150 },
-    { field: "email", headerName: "Email", width: 220 },
-    { field: "phone", headerName: "Phone", width: 150 },
+    { field: "email", headerName: "Email", width: 190 },
+    { field: "phone", headerName: "Phone", width: 160 },
   ];
 
   const fetchCustomers = () => {

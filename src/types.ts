@@ -19,13 +19,13 @@ export type Training = {
     date: string;
     duration: number;
     activity: string;
+    customer: TrainingCustomer | null;
 }
 
 export type CustomersResponse = {
   _embedded: { customers: Customer[] };
 }
 
-// Customer as embedded in the /gettrainings response (has id, no _links)
 export type TrainingCustomer = {
   id: number;
   firstname: string;
