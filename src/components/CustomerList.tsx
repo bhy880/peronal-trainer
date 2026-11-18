@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import type { GridColDef } from "@mui/x-data-grid";
-import { getCustomers } from "../api";
+import type { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import { deleteCustomer, getCustomers } from "../api";
 import type { Customer } from "../types";
+import { IconButton } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function CustomerList() {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -15,12 +17,28 @@ function CustomerList() {
     { field: "city", headerName: "City", width: 150 },
     { field: "email", headerName: "Email", width: 190 },
     { field: "phone", headerName: "Phone", width: 160 },
+    {
+      field: '_links.self.href',
+      headerName: ' ',
+      renderCell: (params: GridRenderCellParams) =>
+        <IconButton onClick={() => handleDelete(params.row._links.self.href)}>
+          <DeleteIcon color="error" />
+        </IconButton>
+    }
   ];
 
   const fetchCustomers = () => {
     getCustomers()
     .then(data => setCustomers(data._embedded.customers))
     .catch(err => console.error(err))
+  }
+
+  const handleDelete = (url: string) => {
+    if (window.confirm("Are you sure you want to delete this customer?")) {
+      deleteCustomer(url)
+      .then(() => fetchCustomers())
+      .catch(err => console.error(err))
+    }
   }
 
   useEffect(() => {
