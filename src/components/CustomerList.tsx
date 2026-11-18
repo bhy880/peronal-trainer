@@ -5,6 +5,7 @@ import { deleteCustomer, getCustomers } from "../api";
 import type { Customer } from "../types";
 import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddCustomer from "./AddCustomer";
 
 function CustomerList() {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -21,7 +22,7 @@ function CustomerList() {
       field: '_links.self.href',
       headerName: ' ',
       renderCell: (params: GridRenderCellParams) =>
-        <IconButton onClick={() => handleDelete(params.row._links.self.href)}>
+        <IconButton onClick={() => handleDelete(params.row._links!.self.href)}>
           <DeleteIcon color="error" />
         </IconButton>
     }
@@ -48,10 +49,11 @@ function CustomerList() {
   return (
     <div style={{ width: "100%", height: 600 }}>
       <h2>Customers</h2>
+      <AddCustomer fetchCustomers= {fetchCustomers} />
       <DataGrid
         rows={customers}
         columns={columns}
-        getRowId={row => row._links.self.href}
+        getRowId={row => row._links!.self.href}
         autoPageSize
         disableRowSelectionOnClick
       />

@@ -6,7 +6,7 @@ export type Customer = {
     city: string;
     email: string;
     phone: string;
-    _links: {
+    _links?: {
     self: { href: string };
     customer: { href: string };
     trainings: { href: string };
