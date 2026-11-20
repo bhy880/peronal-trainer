@@ -6,18 +6,28 @@ import type { Customer } from "../types";
 import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCustomer from "./AddCustomer";
+import EditCustomer from "./EditCustomer";
 
 function CustomerList() {
   const [customers, setCustomers] = useState<Customer[]>([]);
 
   const columns: GridColDef[] = [
-    { field: "firstname", headerName: "First name", width: 150 },
+    { field: "firstname", headerName: "First name", width: 120 },
     { field: "lastname", headerName: "Last name", width: 150 },
     { field: "streetaddress", headerName: "Street address", width: 200 },
-    { field: "postcode", headerName: "Postcode", width: 150 },
+    { field: "postcode", headerName: "Postcode", width: 120 },
     { field: "city", headerName: "City", width: 150 },
-    { field: "email", headerName: "Email", width: 190 },
-    { field: "phone", headerName: "Phone", width: 160 },
+    { field: "email", headerName: "Email", width: 150 },
+    { field: "phone", headerName: "Phone", width: 150 },
+    {
+      field: "edit",
+      headerName: "",
+      width: 60,
+      sortable: false,
+      filterable: false,
+      renderCell: (params: GridRenderCellParams) =>
+        <EditCustomer customerData={params.row} fetchCustomers={fetchCustomers} />
+    },
     {
       field: '_links.self.href',
       headerName: ' ',
