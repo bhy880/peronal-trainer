@@ -7,6 +7,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCustomer from "./AddCustomer";
 import EditCustomer from "./EditCustomer";
+import AddTraining from "./AddTraining";
 
 function CustomerList() {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -19,6 +20,15 @@ function CustomerList() {
     { field: "city", headerName: "City", width: 150 },
     { field: "email", headerName: "Email", width: 150 },
     { field: "phone", headerName: "Phone", width: 150 },
+    {
+      field: "addTraining",
+      headerName: "",
+      width: 60,
+      sortable: false,
+      filterable: false,
+      renderCell: (params: GridRenderCellParams) =>
+        <AddTraining customer={params.row} />
+    },
     {
       field: "edit",
       headerName: "",

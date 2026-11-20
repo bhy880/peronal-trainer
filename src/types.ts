@@ -14,6 +14,10 @@ export type Customer = {
 
 }
 
+export type CustomersResponse = {
+  _embedded: { customers: Customer[] };
+}
+
 export type Training = {
     id: number;
     date: string;
@@ -22,12 +26,16 @@ export type Training = {
     customer: TrainingCustomer | null;
 }
 
-export type CustomersResponse = {
-  _embedded: { customers: Customer[] };
-}
 
 export type TrainingCustomer = {
   id: number;
   firstname: string;
   lastname: string;
+}
+
+export type TrainingData = {
+  date: string;
+  duration: number;
+  activity: string;
+  customer: string;
 }

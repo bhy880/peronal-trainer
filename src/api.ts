@@ -1,4 +1,4 @@
-import type { Customer, Training } from "./types";
+import type { Customer, TrainingData } from "./types";
 
 export function getCustomers() {
   return fetch(import.meta.env.VITE_API_URL + "/customers")
@@ -17,9 +17,7 @@ export function deleteCustomer(url: string){
   .then(response => {
     if (!response.ok) {
       throw new Error("Error when deleting a customer");
-
     }
-    return response.json();
   })
 }
 
@@ -62,7 +60,7 @@ export function getTrainings() {
     return response.json();
   })
 }
-export function addTraining(training: Training) {
+export function addTraining(training: TrainingData) {
   return fetch(import.meta.env.VITE_API_URL + "/trainings", {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -81,7 +79,5 @@ export function deleteTraining(id: number) {
   .then(response => {
     if (!response.ok)
       throw new Error("Error when deleting a training");
-
-    return response.json();
   })
 }

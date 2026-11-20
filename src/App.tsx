@@ -5,6 +5,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link, Outlet } from "react-router-dom";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
           </Button>
         </Toolbar>
       </AppBar>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
       <Outlet />
+      </LocalizationProvider>
       <CssBaseline />
     </Container>
   );
