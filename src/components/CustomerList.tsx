@@ -26,6 +26,7 @@ function CustomerList() {
       width: 60,
       sortable: false,
       filterable: false,
+      disableExport: true,
       renderCell: (params: GridRenderCellParams) =>
         <AddTraining customer={params.row} />
     },
@@ -35,6 +36,7 @@ function CustomerList() {
       width: 60,
       sortable: false,
       filterable: false,
+      disableExport: true,
       renderCell: (params: GridRenderCellParams) =>
         <EditCustomer customerData={params.row} fetchCustomers={fetchCustomers} />
     },
@@ -76,6 +78,16 @@ function CustomerList() {
         getRowId={row => row._links!.self.href}
         autoPageSize
         disableRowSelectionOnClick
+        showToolbar
+        slotProps={{
+          toolbar: {
+            csvOptions: {
+              fileName: "customers",
+              delimiter: ";",
+              utf8WithBom: true,
+            },
+          },
+        }}
       />
     </div>
   );
